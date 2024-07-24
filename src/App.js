@@ -1,25 +1,40 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+// Import các component của bạn
+import Footer from './Footer';
+import Navbar from './Navbar'; 
+import ProductService from './ProductService';
+import ProductList from './ProductList';       
+import UpdateProduct from './UpdateProduct'; 
 
 function App() {
+  const [walletAddress, setWalletAddress] = useState('');
+
+  const handleWalletConnect = (address) => {
+    setWalletAddress(address);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Navbar onWalletConnect={handleWalletConnect} /> {/* Truyền hàm callback */}
+        <div className="content">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/product-service" element={<ProductService />} />
+            <Route path="/product-list" element={<ProductList />} />
+            <Route path="/product-update/:id" element={<UpdateProduct />} />
+          </Routes>
+        </div>
+        <Footer /> {/* Sử dụng component Footer */}
+      </div>
+    </Router>
   );
+}
+
+function Home() {
+  return <h2>Trang Chủ</h2>;
 }
 
 export default App;
