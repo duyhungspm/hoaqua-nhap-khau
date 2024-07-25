@@ -52,14 +52,16 @@ function Navbar({ onWalletConnect }) {
 
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav mr-auto">
-          <li className="nav-item active">
-            <Link className="nav-link" to="/">Home</Link>
-          </li>
+       
           <li className="nav-item">
             <Link className="nav-link" to="/product-service">Product Service</Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/product-list">Product List</Link>
+            <Link className="nav-link" to="/product-listservice">Product Update</Link>
+          </li>
+
+          <li className="nav-item">
+            <Link className="nav-link" to="/product-list">Danh sách sản phẩm</Link>
           </li>
         </ul>
         {!isConnected ? (

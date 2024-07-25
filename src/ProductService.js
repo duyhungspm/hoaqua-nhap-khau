@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function ProductService() {
+function ProductService({ onProductAdded }) {
   const [product, setProduct] = useState({
     name: '',
     description: '',
     price: '',
     quantity: '',
-    imageUrl: '' // Thêm trường imageUrl vào state
+    origin: '',
+    imageUrl: ''
   });
+
+  const apiKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiJmMWM0YTEwZC0yNzRkLTQ5MWQtYjAzMy1lNTY1N2M4Njk1OGEiLCJzdWIiOiI2ZmNiMDQ2OC00YTEyLTQ3NGQtYTA1MS0wMzRkZmRkZDUzOTQiLCJpYXQiOjE3MjE1NzY0MDZ9.fc_d-U_fIE9S45ncbodI2YHrT53w0vWg_8uMEtq9OKY';
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,7 +22,6 @@ function ProductService() {
   };
 
   const handleSave = async () => {
-    const apiKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiJmMWM0YTEwZC0yNzRkLTQ5MWQtYjAzMy1lNTY1N2M4Njk1OGEiLCJzdWIiOiI2ZmNiMDQ2OC00YTEyLTQ3NGQtYTA1MS0wMzRkZmRkZDUzOTQiLCJpYXQiOjE3MjE1NzY0MDZ9.fc_d-U_fIE9S45ncbodI2YHrT53w0vWg_8uMEtq9OKY'; // Thay bằng API key của bạn
     const collectionId = 'acc31758-a134-4bb0-a05c-b4911048ff33'; 
     const userReferenceId = '123'; 
 
@@ -35,12 +37,16 @@ function ProductService() {
           details: {
             collectionId: collectionId,
             description: product.description,
-            imageUrl: product.imageUrl, // Sử dụng giá trị imageUrl từ state
+            imageUrl: product.imageUrl,
             name: product.name,
             attributes: [
               {
                 traitType: 'price',
                 value: product.price
+              },
+              {
+                traitType: 'origin',
+                value: product.origin
               },
               {
                 traitType: 'quantity',
@@ -58,7 +64,16 @@ function ProductService() {
 
       const result = await response.json();
       console.log('Sản phẩm đã được lưu:', result);
+      setProduct({
+        name: '',
+        description: '',
+        price: '',
+        quantity: '',
+        origin: '',
+        imageUrl: ''
+      });
       alert('Sản phẩm đã được lưu thành công');
+      if (onProductAdded) onProductAdded();
     } catch (error) {
       console.error('Lỗi:', error);
       alert('Có lỗi xảy ra khi lưu thông tin sản phẩm');
@@ -92,7 +107,7 @@ function ProductService() {
         </div>
         <div className="form-group mb-3">
           <label htmlFor="price">Giá tiền:</label>
-<input
+          <input
             type="number"
             className="form-control"
             id="price"
@@ -120,6 +135,17 @@ function ProductService() {
             id="imageUrl"
             name="imageUrl"
             value={product.imageUrl}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group mb-3">
+          <label htmlFor="origin">Nguồn gốc:</label>
+          <input
+            type="text"
+            className="form-control"
+            id="origin"
+            name="origin"
+            value={product.origin}
             onChange={handleChange}
           />
         </div>

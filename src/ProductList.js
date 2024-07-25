@@ -50,20 +50,27 @@ function ProductList() {
       />
       <div className="row">
         {filteredProducts.map((product) => (
-          <div className="col-lg-3 col-md-4 col-sm-6 mb-4" key={product.item.id}>
-            <div className="card">
-              <img src={product.item.imageUrl || 'default-image-url.jpg'} className="card-img-top" alt={product.item.name} />
-              <div className="card-body">
+          <div className="col-lg-4 col-md-6 col-sm-12 mb-4" key={product.item.id}>
+            <div className="card h-100">
+              <img 
+                src={product.item.imageUrl || 'default-image-url.jpg'} 
+                className="card-img-top" 
+                alt={product.item.name} 
+                style={{ height: '200px', objectFit: 'cover' }} 
+              />
+              <div className="card-body d-flex flex-column">
                 <h5 className="card-title">{product.item.name}</h5>
                 <p className="card-text">{product.item.description}</p>
                 <p className="card-text">
-                  Giá: {product.item.attributes?.find(attr => attr.traitType === 'price')?.value || 'N/A'}
+                  <strong>Giá:</strong> {product.item.attributes?.find(attr => attr.traitType === 'price')?.value || 'N/A'}
                 </p>
                 <p className="card-text">
-                  Số lượng: {product.item.attributes?.find(attr => attr.traitType === 'quantity')?.value || 'N/A'}
+                  <strong>Số lượng:</strong> {product.item.attributes?.find(attr => attr.traitType === 'quantity')?.value || 'N/A'}
                 </p>
-                <Link to={`/product-update/${product.item.id}`} className="btn btn-success">
-                  Cập nhật
+                <p className="card-text"><strong>Nguồn gốc:</strong> {product.item.attributes?.find(attr => attr.traitType === 'origin')?.value || 'N/A'}
+                </p>
+                <Link  className="btn btn-success mt-auto">
+                  Chi tiết
                 </Link>
               </div>
             </div>
@@ -73,4 +80,5 @@ function ProductList() {
     </div>
   );
 }
+
 export default ProductList;

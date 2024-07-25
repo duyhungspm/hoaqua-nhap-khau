@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
 // Import các component của bạn
 import Footer from './Footer';
 import Navbar from './Navbar'; 
 import ProductService from './ProductService';
-import ProductList from './ProductList';       
+import ProductList from './ProductList'; // Import trang ProductList
 import UpdateProduct from './UpdateProduct'; 
+import ProductListService from './ProductListService';
 
 function App() {
   const [walletAddress, setWalletAddress] = useState('');
@@ -24,6 +26,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/product-service" element={<ProductService />} />
             <Route path="/product-list" element={<ProductList />} />
+            <Route path="/product-listservice" element={<ProductListService />} />
             <Route path="/product-update/:id" element={<UpdateProduct />} />
           </Routes>
         </div>
