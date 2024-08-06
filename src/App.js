@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import Footer from './Footer';
 import Navbar from './Navbar'; 
 import ProductService from './ProductService';
-import ProductList from './ProductList'; 
+import ProductList from './Productlist';
 import UpdateProduct from './UpdateProduct'; 
 import ProductListService from './ProductListService';
 

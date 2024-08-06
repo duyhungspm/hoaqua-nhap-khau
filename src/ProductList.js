@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link } from 'react-router-dom';
 
 function ProductList() {
   const [products, setProducts] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState(''); // Trạng thái cho giá trị tìm kiếm
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -22,7 +23,7 @@ function ProductList() {
         }
 
         const result = await response.json();
-        setProducts(result.data.filter(item => item.type === 'UniqueAsset'));
+        setProducts(result.data.filter(item => item.type === 'UniqueAsset')); // Lọc chỉ lấy các phần tử có type là 'UniqueAsset'
       } catch (error) {
         console.error('Lỗi:', error);
         alert('Có lỗi xảy ra khi lấy danh sách sản phẩm');
@@ -67,9 +68,14 @@ function ProductList() {
                   <strong>Số lượng:</strong> {product.item.attributes?.find(attr => attr.traitType === 'quantity')?.value || 'N/A'}
                 </p>
                 <p className="card-text">
-                  <strong>Nguồn gốc:</strong> {product.item.attributes?.find(attr => attr.traitType === 'origin')?.value || 'N/A'}
+<strong>Nguồn gốc:</strong> {product.item.attributes?.find(attr => attr.traitType === 'origin')?.value || 'N/A'}
                 </p>
-<a href={`https://app.gameshift.dev/games/2e0f70ae-4e3a-472e-96da-21ee50a9268e/collectibles/assets/${product.item.id}`} className="btn btn-success mt-auto" target="_blank" rel="noopener noreferrer">
+                <a
+                  href={`https://app.gameshift.dev/games/2e0f70ae-4e3a-472e-96da-21ee50a9268e/collectibles/assets/${product.item.id}`}
+                  className="btn btn-success mt-auto"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   Chi tiết
                 </a>
               </div>
