@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/hoaqua-nhap-khau/static/css/main.db62923b.css",
-    "main.js": "/hoaqua-nhap-khau/static/js/main.a8cd6ab3.js",
+    "main.js": "/hoaqua-nhap-khau/static/js/main.31832dde.js",
     "static/js/453.2ab22662.chunk.js": "/hoaqua-nhap-khau/static/js/453.2ab22662.chunk.js",
     "index.html": "/hoaqua-nhap-khau/index.html",
     "main.db62923b.css.map": "/hoaqua-nhap-khau/static/css/main.db62923b.css.map",
-    "main.a8cd6ab3.js.map": "/hoaqua-nhap-khau/static/js/main.a8cd6ab3.js.map",
+    "main.31832dde.js.map": "/hoaqua-nhap-khau/static/js/main.31832dde.js.map",
     "453.2ab22662.chunk.js.map": "/hoaqua-nhap-khau/static/js/453.2ab22662.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.db62923b.css",
-    "static/js/main.a8cd6ab3.js"
+    "static/js/main.31832dde.js"
   ]
 }
